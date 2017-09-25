@@ -28,6 +28,8 @@ import org.eclipse.reddeer.workbench.impl.editor.DefaultEditor;
 import org.eclipse.reddeer.workbench.impl.shell.WorkbenchShell;
 import org.jboss.tools.central.reddeer.api.JavaScriptHelper;
 import org.jboss.tools.central.reddeer.wait.CentralIsLoaded;
+import org.jboss.tools.central.test.ui.reddeer.internal.NotRunningOnWindows;
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -66,7 +68,8 @@ public class BasicTests {
 
 	@Test
 	public void learnAboutRedHatButton() {
-		centralBrowser.execute("$(\'a[href=\"http://developers.redhat.com/\"]\').click()");	
+		Assume.assumeTrue(NotRunningOnWindows.isSatisfied());
+		centralBrowser.execute("$(\'a[href=\"http://developers.redhat.com/\"]\').click()");
 		new BrowserEditor("http://developers.redhat.com/").close();
 	}
 
@@ -104,6 +107,7 @@ public class BasicTests {
 
 	@Test
 	public void HTML5ProjectWizardCanBeEnvoked() {
+		Assume.assumeTrue(NotRunningOnWindows.isSatisfied());
 		jsHelper.clickWizard("HTML5 Project");
 		new DefaultShell("New Project Example").close();
 	}
@@ -115,5 +119,5 @@ public class BasicTests {
 		new DefaultShell("New Project Example").close();
 		jsHelper.clearSearch();
 	}
-	
+
 }
