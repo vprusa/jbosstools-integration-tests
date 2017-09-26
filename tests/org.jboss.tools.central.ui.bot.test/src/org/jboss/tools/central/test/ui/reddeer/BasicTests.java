@@ -50,6 +50,7 @@ public class BasicTests {
 
 	@Before
 	public void setup() {
+		Assume.assumeTrue(NotRunningOnWindows.isSatisfied());
 		new DefaultToolItem(new WorkbenchShell(), CENTRAL_LABEL).click();
 		// activate central editor
 		new DefaultEditor(CENTRAL_LABEL);
@@ -68,7 +69,6 @@ public class BasicTests {
 
 	@Test
 	public void learnAboutRedHatButton() {
-		Assume.assumeTrue(NotRunningOnWindows.isSatisfied());
 		centralBrowser.execute("$(\'a[href=\"http://developers.redhat.com/\"]\').click()");
 		new BrowserEditor("http://developers.redhat.com/").close();
 	}
@@ -107,7 +107,6 @@ public class BasicTests {
 
 	@Test
 	public void HTML5ProjectWizardCanBeEnvoked() {
-		Assume.assumeTrue(NotRunningOnWindows.isSatisfied());
 		jsHelper.clickWizard("HTML5 Project");
 		new DefaultShell("New Project Example").close();
 	}
