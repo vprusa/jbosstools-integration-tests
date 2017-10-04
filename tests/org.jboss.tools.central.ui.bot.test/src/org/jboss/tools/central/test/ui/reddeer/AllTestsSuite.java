@@ -22,10 +22,14 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(RedDeerSuite.class)
 @SuiteClasses({
+	/*
 	ArchetypesTest.class,
 	HTML5Parameterized.class,
 	BasicTests.class,
-	DnDTest.class
+	DnDTest.class,
+	InstallationDetailsTest.class
+	*/
+	InstallationDetailsTest.class
 	})
 public class AllTestsSuite {
 
