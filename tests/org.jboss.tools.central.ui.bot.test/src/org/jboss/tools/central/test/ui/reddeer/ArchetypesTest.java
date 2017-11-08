@@ -21,6 +21,7 @@ import java.util.Map.Entry;
 import org.eclipse.reddeer.eclipse.core.resources.Project;
 import org.eclipse.reddeer.eclipse.m2e.core.ui.preferences.MavenSettingsPreferencePage;
 import org.eclipse.reddeer.eclipse.ui.navigator.resources.ProjectExplorer;
+import org.eclipse.reddeer.junit.runner.RedDeerSuite;
 import org.eclipse.reddeer.swt.impl.toolbar.DefaultToolItem;
 import org.eclipse.reddeer.workbench.handler.WorkbenchShellHandler;
 import org.eclipse.reddeer.workbench.impl.editor.DefaultEditor;
@@ -31,22 +32,26 @@ import org.jboss.tools.central.reddeer.projects.ArchetypeProject;
 import org.jboss.tools.central.test.ui.reddeer.projects.AngularJSForge;
 import org.jboss.tools.central.test.ui.reddeer.projects.HTML5Project;
 import org.jboss.tools.central.test.ui.reddeer.projects.JavaEEWebProject;
+import org.jboss.tools.maven.reddeer.requirement.NewRepositoryRequirement.DefineMavenRepository;
+import org.jboss.tools.maven.reddeer.requirement.NewRepositoryRequirement.MavenRepository;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * 
  * @author rhopp
  * @contributor jkopriva@redhat.com
- *
+ * @contributor vprusa@redhat.com
  */
-
+@RunWith(RedDeerSuite.class)
+@DefineMavenRepository(newRepositories = {@MavenRepository(url="https://maven.repository.redhat.com/",ID="ga",snapshots=true)})
 public class ArchetypesTest {
 
 	private static final String CENTRAL_LABEL = "Red Hat Central";
-	private static final String MAVEN_SETTINGS_PATH = System.getProperty("maven.config.file");
+	private static final String MAVEN_SETTINGS_PATH = System.getProperty("maven.config.file") == null ? "./target/classes/settings.xml" : System.getProperty("maven.config.file");
 	private static Map<org.jboss.tools.central.reddeer.projects.Project, List<String>> projectWarnings = new HashMap<org.jboss.tools.central.reddeer.projects.Project, List<String>>();
 	
 	@BeforeClass
@@ -89,7 +94,7 @@ public class ArchetypesTest {
 		projectWarnings.clear();
 		assertFalse(sb.toString(), fail);
 	}
-	
+
 	@Test
 	public void HTML5ProjectTest() {
 		ArchetypeProject project = new HTML5Project();
@@ -106,12 +111,12 @@ public class ArchetypesTest {
 	public void JavaEEWebProjectTest() {
 		importArchetypeProject(new JavaEEWebProject(false));
 	}
-
+	
 	@Test
 	public void JavaEEWebProjectBlankTest() {
 		importArchetypeProject(new JavaEEWebProject(true));
 	}
-
+	
 //	@Test
 //	public void HybridMobileTest(){
 //		try{
