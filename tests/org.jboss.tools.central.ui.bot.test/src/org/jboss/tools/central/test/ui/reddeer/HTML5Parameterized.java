@@ -30,6 +30,7 @@ import org.eclipse.reddeer.eclipse.ui.problems.Problem;
 import org.eclipse.reddeer.eclipse.ui.views.markers.ProblemsView;
 import org.eclipse.reddeer.eclipse.ui.views.markers.ProblemsView.ProblemType;
 import org.eclipse.reddeer.junit.internal.runner.ParameterizedRequirementsRunnerFactory;
+import org.eclipse.reddeer.junit.runner.RedDeerSuite;
 import org.eclipse.reddeer.swt.impl.browser.InternalBrowser;
 import org.eclipse.reddeer.swt.impl.toolbar.DefaultToolItem;
 import org.eclipse.reddeer.workbench.core.condition.JobIsRunning;
@@ -44,11 +45,14 @@ import org.jboss.tools.central.reddeer.wizards.NewProjectExamplesWizardDialogCen
 import org.jboss.tools.central.test.ui.reddeer.internal.CentralBrowserIsLoading;
 import org.jboss.tools.central.test.ui.reddeer.internal.ErrorsReporter;
 import org.jboss.tools.common.reddeer.utils.StackTraceUtils;
+import org.jboss.tools.maven.reddeer.requirement.NewRepositoryRequirement.DefineMavenRepository;
+import org.jboss.tools.maven.reddeer.requirement.NewRepositoryRequirement.MavenRepository;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 import org.junit.runners.Parameterized.UseParametersRunnerFactory;
@@ -57,16 +61,19 @@ import org.junit.runners.Parameterized.UseParametersRunnerFactory;
  * 
  * @author rhopp
  * @contributor jkopriva@redhat.com
+ * @contributor vprusa@redhat.com
  *
  */
 
+@RunWith(RedDeerSuite.class)
 @UseParametersRunnerFactory(ParameterizedRequirementsRunnerFactory.class)
+@DefineMavenRepository(newRepositories = {@MavenRepository(url="https://maven.repository.redhat.com/",ID="ga",snapshots=true)})
 public class HTML5Parameterized {
 
 	private static final String CENTRAL_LABEL = "Red Hat Central";
 	private static final String SEARCH_STRING = "eap-7.0.0.GA";
-	private static final String MAVEN_SETTINGS_PATH = System.getProperty("maven.config.file");
-	
+	private static final String MAVEN_SETTINGS_PATH = System.getProperty("maven.config.file") == null ? "./target/classes/settings.xml" : System.getProperty("maven.config.file");
+
 	private static DefaultEditor centralEditor;
 	private static InternalBrowser browser;
 	private static ErrorsReporter reporter = ErrorsReporter.getInstance();
