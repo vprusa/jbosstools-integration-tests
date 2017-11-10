@@ -47,6 +47,7 @@ import org.jboss.tools.central.test.ui.reddeer.internal.ErrorsReporter;
 import org.jboss.tools.common.reddeer.utils.StackTraceUtils;
 import org.jboss.tools.maven.reddeer.requirement.NewRepositoryRequirement.DefineMavenRepository;
 import org.jboss.tools.maven.reddeer.requirement.NewRepositoryRequirement.MavenRepository;
+import org.jboss.tools.maven.reddeer.requirement.NewRepositoryRequirement.PredefinedMavenRepository;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -67,12 +68,15 @@ import org.junit.runners.Parameterized.UseParametersRunnerFactory;
 
 @RunWith(RedDeerSuite.class)
 @UseParametersRunnerFactory(ParameterizedRequirementsRunnerFactory.class)
-@DefineMavenRepository(newRepositories = {@MavenRepository(url="https://maven.repository.redhat.com/",ID="ga",snapshots=true)})
+@DefineMavenRepository(newRepositories = {
+		@MavenRepository(url = "https://maven.repository.redhat.com/ga/", ID = "ga", snapshots = true) })
 public class HTML5Parameterized {
 
 	private static final String CENTRAL_LABEL = "Red Hat Central";
 	private static final String SEARCH_STRING = "eap-7.0.0.GA";
-	private static final String MAVEN_SETTINGS_PATH = System.getProperty("maven.config.file") == null ? "./target/classes/settings.xml" : System.getProperty("maven.config.file");
+	private static final String MAVEN_SETTINGS_PATH = System.getProperty("maven.config.file") == null
+			? "./target/classes/settings.xml"
+			: System.getProperty("maven.config.file");
 
 	private static DefaultEditor centralEditor;
 	private static InternalBrowser browser;
@@ -165,8 +169,8 @@ public class HTML5Parameterized {
 	}
 
 	/**
-	 * Imports current example, checks for warnings/errors, tries to deploy it
-	 * to server and finally deletes it.
+	 * Imports current example, checks for warnings/errors, tries to deploy it to
+	 * server and finally deletes it.
 	 * 
 	 * @param exampleName
 	 */
@@ -187,7 +191,8 @@ public class HTML5Parameterized {
 
 		org.jboss.tools.central.reddeer.projects.Project currentProject;
 
-		if (!skip) {
+		if (!skip && !getProjectName().contains("crash")) {
+			// todo skip tests failing on purpose
 			currentProject = new org.jboss.tools.central.reddeer.projects.Project(exampleName, getProjectName());
 			// check for errors/warning
 			checkErrorLog(currentProject);
@@ -230,5 +235,5 @@ public class HTML5Parameterized {
 		List<DefaultProject> projects = projectExplorer.getProjects();
 		return projects.get(0).getName();
 	}
-	
+
 }
