@@ -15,7 +15,12 @@
 	<properties>
 		<!-- <systemProperties>${integrationTestsSystemProperties} -->
 		<!-- -DimportTestDefinition=${importTestDefinition}</systemProperties> -->
-		<systemProperties>${integrationTestsSystemProperties} -DexamplesLocation=${project.build.directory}/${examplesFolder} -Dmaven.settings.path=${maven.settings.path} -Drd.config=${reddeer.config} -DspecificQuickstarts=${specificQuickstarts} -DdeployOnServer=${deployOnServer}</systemProperties>
+		<systemProperties>${integrationTestsSystemProperties}
+			-DexamplesLocation=${project.build.directory}/${examplesFolder}
+			-Dmaven.settings.path=${maven.settings.path}
+			-Drd.config=${reddeer.config}
+			-DspecificQuickstarts=${specificQuickstarts}
+			-DdeployOnServer=${deployOnServer}</systemProperties>
 		<quickstartsURLWildFly>https://github.com/wildfly/quickstart/archive/11.x.zip</quickstartsURLWildFly>
 		<quickstartsURLEAP>http://download.eng.brq.redhat.com/released/JBEAP-7/7.0.0/jboss-eap-7.0.0-quickstarts.zip</quickstartsURLEAP>
 		<quickstartsURLJavaEE>https://github.com/javaee-samples/javaee7-samples/archive/master.zip</quickstartsURLJavaEE>
@@ -33,57 +38,62 @@
 		<deployOnServer>false</deployOnServer>
 	</properties>
 	<build>
-	<resources>
-		<resource>
-			<directory>resources</directory>
-			<includes>
-				<include>**</include>
-			</includes>
-			<filtering>true</filtering>
-		</resource>
-	</resources>
-	<pluginManagement>
-		<plugins>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-surefire-plugin</artifactId>
-				<configuration>
-					<testSuite>org.jboss.tools.examples.ui.bot.test</testSuite>
-					<appArgLine>-testpluginname ${project.artifactId}</appArgLine>
-					<dependencies combine.children="append">
-						<dependency>
-							<type>p2-installable-unit</type>
-							<artifactId>org.jboss.tools.maven.feature.feature.group</artifactId>
-							<version>0.0.0</version>
-						</dependency>
-						<dependency>
-							<type>p2-installable-unit</type>
-							<artifactId>org.jboss.tools.common.feature.feature.group</artifactId>
-							<version>0.0.0</version>
-						</dependency>
-						<dependency>
-							<type>p2-installable-unit</type>
-							<artifactId>org.jboss.ide.eclipse.as.feature.feature.group</artifactId>
-							<version>0.0.0</version>
-						</dependency>
-						<dependency>
-							<type>p2-installable-unit</type>
-							<artifactId>org.eclipse.jpt.jpa.feature.feature.group</artifactId>
-							<version>0.0.0</version>
-						</dependency>
-					</dependencies>
-				</configuration>
-			</plugin>
-		</plugins>
-	</pluginManagement>
-</build>
+		<resources>
+			<resource>
+				<directory>resources</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-surefire-plugin</artifactId>
+					<configuration>
+						<testSuite>org.jboss.tools.examples.ui.bot.test</testSuite>
+						<appArgLine>-testpluginname ${project.artifactId}</appArgLine>
+						<dependencies combine.children="append">
+							<dependency>
+								<type>p2-installable-unit</type>
+								<artifactId>org.jboss.tools.maven.feature.feature.group</artifactId>
+								<version>0.0.0</version>
+							</dependency>
+							<dependency>
+								<type>p2-installable-unit</type>
+								<artifactId>org.jboss.tools.common.feature.feature.group</artifactId>
+								<version>0.0.0</version>
+							</dependency>
+							<dependency>
+								<type>p2-installable-unit</type>
+								<artifactId>org.jboss.ide.eclipse.as.feature.feature.group</artifactId>
+								<version>0.0.0</version>
+							</dependency>
+							<dependency>
+								<type>p2-installable-unit</type>
+								<artifactId>org.eclipse.jpt.jpa.feature.feature.group</artifactId>
+								<version>0.0.0</version>
+							</dependency>
+							<dependency>
+								<type>p2-installable-unit</type>
+								<artifactId>org.eclipse.jpt.jpa.feature.feature.group</artifactId>
+								<version>0.0.0</version>
+							</dependency>
+						</dependencies>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
 	<profiles>
 		<profile>
 			<id>WildFly11</id>
 			<activation>
-        		<activeByDefault>true</activeByDefault>
-   			</activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<properties>
 				<test.class>org.jboss.tools.examples.ui.bot.test.integration.WildFlyImportQuickstartsTest</test.class>
 				<reddeer.config>${project.build.directory}/classes/servers/wildfly-11.json</reddeer.config>
@@ -92,6 +102,21 @@
 			</properties>
 			<build>
 				<plugins>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>target-platform-configuration</artifactId>
+						<configuration>
+							<dependency-resolution>
+								<extraRequirements>
+									<requirement>
+										<type>p2-installable-unit</type>
+										<id>net.sf.eclipsecs.feature.group</id>
+										<versionRange>8.0.0</versionRange>
+									</requirement>
+								</extraRequirements>
+							</dependency-resolution>
+						</configuration>
+					</plugin>
 					<plugin>
 						<groupId>com.googlecode.maven-download-plugin</groupId>
 						<artifactId>download-maven-plugin</artifactId>
