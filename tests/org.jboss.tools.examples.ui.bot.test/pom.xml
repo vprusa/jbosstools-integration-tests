@@ -108,6 +108,11 @@
 										<id>net.sf.eclipsecs.feature.group</id>
 										<versionRange>8.0.0</versionRange>
 									</requirement>
+									<requirement>
+										<type>p2-installable-unit</type>
+										<id>com.basistech.m2e.code.quality.checkstyle.feature.feature.group</id>
+										<versionRange>1.0.0</versionRange>
+									</requirement>
 								</extraRequirements>
 							</dependency-resolution>
 						</configuration>
@@ -566,6 +571,11 @@
 			<id>m2e-connector-</id>
 			<url>http://ianbrandt.github.io/m2e-maven-dependency-plugin/0.0.4/</url>
 			<layout>p2</layout>
+		</repository>
+		<repository>
+			<id>m2e-code-quality-plugins</id>
+			<layout>p2</layout>
+			<url>http://m2e-code-quality.github.io/m2e-code-quality/site/latest/</url>
 		</repository>
 	</repositories>
 </project>
