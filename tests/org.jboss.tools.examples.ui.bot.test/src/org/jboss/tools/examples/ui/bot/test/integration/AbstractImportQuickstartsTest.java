@@ -260,6 +260,7 @@ public abstract class AbstractImportQuickstartsTest {
 
 	protected void runQuickstarts(Quickstart qstart, String serverName, String blacklistFile,
 			String blacklistErrorsFile) {
+		loadBlacklistFile(blacklistFile);
 		loadBlacklistErrorsFile(blacklistErrorsFile);
 		if (!blacklistFileContents.contains(qstart.getName())) {
 			try {
