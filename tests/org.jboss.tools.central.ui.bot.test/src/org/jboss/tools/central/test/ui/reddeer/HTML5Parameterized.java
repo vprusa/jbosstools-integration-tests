@@ -68,8 +68,8 @@ import org.junit.runners.Parameterized.UseParametersRunnerFactory;
 
 @RunWith(RedDeerSuite.class)
 @UseParametersRunnerFactory(ParameterizedRequirementsRunnerFactory.class)
-@DefineMavenRepository(newRepositories = {
-		@MavenRepository(url = "https://maven.repository.redhat.com/ga/", ID = "ga", snapshots = true) })
+//@DefineMavenRepository(newRepositories = {
+		//@MavenRepository(url = "https://maven.repository.redhat.com/ga/", ID = "ga", snapshots = true) })
 public class HTML5Parameterized {
 
 	private static final String CENTRAL_LABEL = "Red Hat Central";
@@ -99,7 +99,9 @@ public class HTML5Parameterized {
 		do {
 			String[] examples = jsHelper.getExamples();
 			for (String exampleName : examples) {
-				resultList.add(new CentralProject(exampleName, jsHelper.getDescriptionForExample(exampleName)));
+				if (System.getProperty("specificQuickstarts") == null || System.getProperty("specificQuickstarts").contains(exampleName)) {
+					resultList.add(new CentralProject(exampleName, jsHelper.getDescriptionForExample(exampleName)));
+				}
 			}
 			jsHelper.nextPage();
 		} while (jsHelper.hasNext());
