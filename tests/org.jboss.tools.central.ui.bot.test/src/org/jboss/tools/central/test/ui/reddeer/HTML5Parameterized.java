@@ -99,7 +99,7 @@ public class HTML5Parameterized {
 		do {
 			String[] examples = jsHelper.getExamples();
 			for (String exampleName : examples) {
-				if (System.getProperty("specificQuickstarts") == null || System.getProperty("specificQuickstarts").contains(exampleName)) {
+				if (System.getProperty("specificQuickstarts") == null || System.getProperty("specificQuickstarts").isEmpty() || System.getProperty("specificQuickstarts").contains(exampleName)) {
 					resultList.add(new CentralProject(exampleName, jsHelper.getDescriptionForExample(exampleName)));
 				}
 			}
