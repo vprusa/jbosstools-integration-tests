@@ -127,7 +127,8 @@ public class InstallationDetailsTest {
 			"jboss\\.central\\.webpage\\.url\\|devstudio\\|{majorVersion}.*=https://repository\\.jboss\\.org/nexus/service.*artifact/maven/redirect.*public-jboss.*org\\.jboss\\.tools\\.central.*jbosstools-central-webpage.*zip",
 			"jboss\\.discovery\\.site\\.integration-stack\\.url\\|devstudio\\|{majorVersion}.*=https://devstudio\\.redhat\\.com/{majorVersion}.*integration-stack/discovery/",
 			"jboss\\.discovery\\.earlyaccess\\.site\\.integration-stack\\.url\\|devstudio\\|{majorVersion}.*=https://devstudio\\.redhat\\.com/{majorVersion}.*/integration-stack/discovery/earlyaccess/",
-			"jboss\\.discovery\\.site\\.integration-stack-sap\\.url\\|devstudio\\|{majorVersion}.*=https://devstudio\\.redhat\\.com/{majorVersion}.*/integration-stack/extras/" };
+			//"jboss\\.discovery\\.site\\.integration-stack-sap\\.url\\|devstudio\\|{majorVersion}.*=https://devstudio\\.redhat\\.com/{majorVersion}.*/integration-stack/extras/" 
+			};
 
 	public String getJbossToolsMajorVersion() {
 		return jbossToolsVersion.substring(0, jbossToolsVersion.indexOf('.'));
