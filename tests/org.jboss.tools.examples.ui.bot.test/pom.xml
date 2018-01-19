@@ -81,6 +81,28 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<configuration>
+					<dependency-resolution>
+						<extraRequirements>
+							<requirement>
+								<type>p2-installable-unit</type>
+								<id>net.sf.eclipsecs.feature.group</id>
+								<versionRange>8.0.0</versionRange>
+							</requirement>
+							<requirement>
+								<type>p2-installable-unit</type>
+								<id>com.basistech.m2e.code.quality.checkstyle.feature.feature.group</id>
+								<versionRange>1.0.0</versionRange>
+							</requirement>
+						</extraRequirements>
+					</dependency-resolution>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 
 	<profiles>
@@ -97,26 +119,6 @@
 			</properties>
 			<build>
 				<plugins>
-					<plugin>
-						<groupId>org.eclipse.tycho</groupId>
-						<artifactId>target-platform-configuration</artifactId>
-						<configuration>
-							<dependency-resolution>
-								<extraRequirements>
-									<requirement>
-										<type>p2-installable-unit</type>
-										<id>net.sf.eclipsecs.feature.group</id>
-										<versionRange>8.0.0</versionRange>
-									</requirement>
-									<requirement>
-										<type>p2-installable-unit</type>
-										<id>com.basistech.m2e.code.quality.checkstyle.feature.feature.group</id>
-										<versionRange>1.0.0</versionRange>
-									</requirement>
-								</extraRequirements>
-							</dependency-resolution>
-						</configuration>
-					</plugin>
 					<plugin>
 						<groupId>com.googlecode.maven-download-plugin</groupId>
 						<artifactId>download-maven-plugin</artifactId>
