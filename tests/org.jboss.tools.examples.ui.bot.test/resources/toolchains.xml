@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF8"?>
+<!-- https://issues.jboss.org/browse/JBDS-4642 -->
+<toolchains>
+  <toolchain>
+     <type>jdk</type>
+     <provides>
+         <version>1.9</version>
+         <vendor>oracle</vendor>
+         <id>CustomJRE</id>
+     </provides>
+     <configuration>
+        <jdkHome>/usr/java/jdk-9.0.4/</jdkHome>
+     </configuration>
+  </toolchain>
+</toolchains>

@@ -33,6 +33,29 @@
 		<deployOnServer>false</deployOnServer>
 	</properties>
 	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-toolchains-plugin</artifactId>
+				<version>1.0</version>
+				<executions>
+  					<execution>
+  					    <phase>validate</phase>
+      					<goals>
+  						    <goal>toolchain</goal>
+  					    </goals>
+  					</execution>
+  				</executions>
+				<configuration>
+  					<toolchains>
+		    			<jdk>
+      						<version>1.9</version>
+					    	<vendor>oracle</vendor>
+    					</jdk>
+					</toolchains>
+				</configuration>
+			</plugin>
+		</plugins>
 		<resources>
 			<resource>
 				<directory>resources</directory>
