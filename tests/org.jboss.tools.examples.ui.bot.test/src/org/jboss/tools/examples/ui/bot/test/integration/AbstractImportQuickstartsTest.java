@@ -43,6 +43,7 @@ import org.eclipse.reddeer.core.exception.CoreLayerException;
 import org.eclipse.reddeer.core.util.FileUtil;
 import org.eclipse.reddeer.eclipse.condition.ConsoleHasNoChange;
 import org.eclipse.reddeer.eclipse.core.resources.DefaultProject;
+import org.eclipse.reddeer.eclipse.core.resources.MavenProject;
 import org.eclipse.reddeer.eclipse.core.resources.Project;
 import org.eclipse.reddeer.eclipse.m2e.core.ui.preferences.MavenSettingsPreferencePage;
 import org.eclipse.reddeer.eclipse.ui.browser.BrowserEditor;
@@ -57,6 +58,7 @@ import org.eclipse.reddeer.eclipse.wst.server.ui.cnf.ServerModule;
 import org.eclipse.reddeer.eclipse.wst.server.ui.cnf.ServersView2;
 import org.eclipse.reddeer.eclipse.wst.server.ui.cnf.ServersViewEnums.ServerState;
 import org.eclipse.reddeer.jface.wizard.WizardDialog;
+import org.eclipse.reddeer.swt.api.TreeItem;
 import org.eclipse.reddeer.swt.impl.button.OkButton;
 import org.eclipse.reddeer.swt.impl.button.PushButton;
 import org.eclipse.reddeer.swt.impl.menu.ContextMenuItem;
@@ -275,6 +277,7 @@ public abstract class AbstractImportQuickstartsTest {
 				// there was no project in this directory. Pass the test.
 				return;
 			}
+			mavenUpdate(qstart);
 			log.info("Check for warnings and errors");
 			checkForWarnings(qstart);
 			if (blacklistErrorsFileContents == null || (!blacklistErrorsFileContents.containsKey(qstart.getName())
@@ -437,6 +440,13 @@ public abstract class AbstractImportQuickstartsTest {
 	protected static void cleanupShells() {
 		WorkbenchShellHandler.getInstance().closeAllNonWorbenchShells();
 	}
+	
+	protected void mavenUpdate(Quickstart quickstart) {
+		ProjectExplorer pe = new ProjectExplorer();
+		TreeItem projectItem = pe.getProject(quickstart.getName()).getTreeItem();
+		MavenProject project = new MavenProject(projectItem);
+		project.updateMavenProject(TimePeriod.VERY_LONG);
+	}
 
 	protected void importQuickstart(Quickstart quickstart) throws NoProjectException {
 		if (!quickstartImported(quickstart)) {
@@ -451,6 +461,7 @@ public abstract class AbstractImportQuickstartsTest {
 			}
 			try {
 				mavenImportWizard.finish();
+				mavenUpdate(quickstart);
 			} catch (MavenImportWizardException e) {
 				for (String error : e.getErrors()) {
 					reporter.addError(quickstart, error);
