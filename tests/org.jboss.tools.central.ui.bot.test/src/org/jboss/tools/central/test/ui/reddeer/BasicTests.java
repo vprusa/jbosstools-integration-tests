@@ -84,7 +84,8 @@ public class BasicTests {
 		assertTrue(wizards.contains("AngularJS Forge"));
 		assertTrue(wizards.contains("Java EE Web Project"));
 		assertTrue(wizards.contains("Maven Project"));
-		assertTrue(wizards.contains("Hybrid Mobile Project"));
+		// removed from central
+		//assertTrue(wizards.contains("Hybrid Mobile Project"));
 	}
 
 	@Test
