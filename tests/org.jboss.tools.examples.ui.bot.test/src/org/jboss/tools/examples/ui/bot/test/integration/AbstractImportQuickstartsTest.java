@@ -445,7 +445,7 @@ public abstract class AbstractImportQuickstartsTest {
 		ProjectExplorer pe = new ProjectExplorer();
 		TreeItem projectItem = pe.getProject(quickstart.getName()).getTreeItem();
 		MavenProject project = new MavenProject(projectItem);
-		project.updateMavenProject(TimePeriod.VERY_LONG);
+		project.updateMavenProject();
 	}
 
 	protected void importQuickstart(Quickstart quickstart) throws NoProjectException {
