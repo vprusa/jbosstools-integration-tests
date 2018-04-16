@@ -38,15 +38,12 @@ import org.jboss.tools.central.reddeer.projects.ArchetypeProject;
 import org.jboss.tools.central.test.ui.reddeer.projects.AngularJSForge;
 import org.jboss.tools.central.test.ui.reddeer.projects.HTML5Project;
 import org.jboss.tools.central.test.ui.reddeer.projects.JavaEEWebProject;
-<<<<<<< HEAD
 import org.jboss.tools.maven.reddeer.requirement.NewRepositoryRequirement.DefineMavenRepository;
 import org.jboss.tools.maven.reddeer.requirement.NewRepositoryRequirement.MavenRepository;
-=======
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
->>>>>>> Ignore known warnings, remove old os requirement
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -155,9 +152,6 @@ public class ArchetypesTest {
 		assertFalse(sb.toString(), fail);
 	}
 
-<<<<<<< HEAD
-	@Test
-=======
 	// https://www.mkyong.com/java/json-simple-example-read-and-write-json
 	private static void loadBlacklistErrorsFile(String blacklisterrorsFile) {
 		if (blacklisterrorsFile.isEmpty()) {
@@ -175,8 +169,7 @@ public class ArchetypesTest {
 		}
 	}
 
-	//@Test
->>>>>>> Ignore known warnings, remove old os requirement
+	@Test
 	public void HTML5ProjectTest() {
 		ArchetypeProject project = new HTML5Project();
 		importArchetypeProject(project);
@@ -188,17 +181,12 @@ public class ArchetypesTest {
 		importArchetypeProject(project);
 	}
 
-	//@Test
+	@Test
 	public void JavaEEWebProjectTest() {
 		importArchetypeProject(new JavaEEWebProject(false));
 	}
-<<<<<<< HEAD
 	
 	@Test
-=======
-
-	//@Test
->>>>>>> Ignore known warnings, remove old os requirement
 	public void JavaEEWebProjectBlankTest() {
 		importArchetypeProject(new JavaEEWebProject(true));
 	}
