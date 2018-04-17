@@ -57,11 +57,11 @@ import org.junit.runner.RunWith;
  * @contributor vprusa@redhat.com
  */
 @RunWith(RedDeerSuite.class)
-@DefineMavenRepository(newRepositories = {@MavenRepository(url="https://maven.repository.redhat.com/",ID="ga",snapshots=true)})
+//@DefineMavenRepository(newRepositories = {@MavenRepository(url="https://maven.repository.redhat.com/",ID="ga",snapshots=true)})
 public class ArchetypesTest {
 
 	private static final String CENTRAL_LABEL = "Red Hat Central";
-	private static final String MAVEN_SETTINGS_PATH = System.getProperty("maven.config.file") == null ? "./target/classes/settings.xml" : System.getProperty("maven.config.file");
+	private static final String MAVEN_SETTINGS_PATH = System.getProperty("maven.config.file");
 	private static Map<org.jboss.tools.central.reddeer.projects.Project, List<String>> projectWarnings = new HashMap<org.jboss.tools.central.reddeer.projects.Project, List<String>>();
 	private static final Logger log = Logger.getLogger(ExamplesOperator.class);
 
