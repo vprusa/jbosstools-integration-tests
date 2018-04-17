@@ -6,7 +6,7 @@ Bundle-Version: 4.4.200.qualifier
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Red Hat
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.eclipse.reddeer.go;bundle-version="2.2.0",
+Require-Bundle: org.eclipse.reddeer.go;bundle-version="[2.1.0,2.2.0)",
  org.junit;bundle-version="4.8.2",
  org.jboss.tools.maven.reddeer,
  org.jboss.tools.central.reddeer,
