@@ -64,13 +64,13 @@ public class BasicTests {
 		new DefaultCTabItem("Getting Started").activate();
 	}
 
-	@Test
+	//@Test
 	public void learnAboutRedHatButton() {
 		centralBrowser.execute("$(\'a[href=\"http://developers.redhat.com/\"]\').click()");	
 		new BrowserEditor("http://developers.redhat.com/").close();
 	}
 
-	@Test
+	//@Test
 	public void catButton() {
 		centralBrowser.execute("$(\'a[href=\"http://tools.jboss.org/cat/\"]\').click()");
 		new BrowserEditor("http://tools.jboss.org/cat/").close();
