@@ -24,7 +24,8 @@ import org.eclipse.reddeer.common.matcher.RegexMatcher;
 import org.eclipse.reddeer.common.wait.WaitWhile;
 import org.eclipse.reddeer.core.matcher.WithTextMatchers;
 import org.eclipse.reddeer.eclipse.core.resources.Project;
-import org.eclipse.reddeer.eclipse.ui.navigator.resources.ProjectExplorer;
+import org.eclipse.reddeer.eclipse.jdt.ui.packageview.PackageExplorerPart;
+//import org.eclipse.reddeer.eclipse.ui.navigator.resources.PackageExplorerPart;
 import org.eclipse.reddeer.eclipse.ui.perspectives.JavaPerspective;
 import org.eclipse.reddeer.requirements.openperspective.OpenPerspectiveRequirement.OpenPerspective;
 import org.eclipse.reddeer.requirements.server.ServerRequirementState;
@@ -99,7 +100,7 @@ public class MavenProfilesTest extends AbstractMavenSWTBotTest {
 	
 	@After
 	public void cleanProfiles(){
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		pe.open();
 		for(Project p: pe.getProjects()){
 			SelectProfilesDialog mp = new SelectProfilesDialog(p.getName());
@@ -139,7 +140,7 @@ public class MavenProfilesTest extends AbstractMavenSWTBotTest {
 				fail("not all profiles are activated");
 			}
 		}
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
         pe.open();
         pe.getProject("simple-jar").select();
         RegexMatcher rm1 = new RegexMatcher("Run As");
@@ -176,7 +177,7 @@ public class MavenProfilesTest extends AbstractMavenSWTBotTest {
 		String profilesText = mp.getActiveProfilesText();
 		mp.ok();
 		assertTrue(profilesText.equals(SIMPLE_JAR_ALL_PROFILES[0]));
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		pe.open();
 		pe.getProject("simple-jar").select();
 		RegexMatcher rm1 = new RegexMatcher("Run As");

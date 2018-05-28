@@ -11,5 +11,6 @@ Require-Bundle: org.eclipse.reddeer.go;bundle-version="2.1.0",
  org.jboss.tools.maven.reddeer,
  org.jboss.tools.central.reddeer;bundle-version="[2.1.100,2.2.0)",
  org.jboss.ide.eclipse.as.reddeer
-Import-Package: org.json.simple,
+Import-Package: org.eclipse.reddeer.eclipse.jdt.ui.packageview,
+ org.json.simple,
  org.json.simple.parser

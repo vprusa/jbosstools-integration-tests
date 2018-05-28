@@ -5,8 +5,9 @@ import org.eclipse.reddeer.common.wait.TimePeriod;
 import org.eclipse.reddeer.common.wait.WaitUntil;
 import org.eclipse.reddeer.common.wait.WaitWhile;
 import org.eclipse.reddeer.eclipse.core.resources.Project;
+import org.eclipse.reddeer.eclipse.jdt.ui.packageview.PackageExplorerPart;
 import org.eclipse.reddeer.eclipse.ui.dialogs.PropertyDialog;
-import org.eclipse.reddeer.eclipse.ui.navigator.resources.ProjectExplorer;
+//import org.eclipse.reddeer.eclipse.ui.navigator.resources.PackageExplorerPart;
 import org.eclipse.reddeer.swt.condition.ShellIsAvailable;
 import org.eclipse.reddeer.swt.impl.tree.DefaultTree;
 import org.eclipse.reddeer.swt.impl.tree.DefaultTreeItem;
@@ -20,7 +21,7 @@ public class ProjectHasNature extends AbstractWaitCondition {
 	private Project project;
 
 	public ProjectHasNature(String projectName, String natureID, String version) {
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		pe.open();
 		this.project = pe.getProject(projectName);
 		this.project.select();
@@ -30,7 +31,7 @@ public class ProjectHasNature extends AbstractWaitCondition {
 	}
 
 	public ProjectHasNature(String projectName, String natureParent, String natureID, String version) {
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		pe.open();
 		this.project = pe.getProject(projectName);
 		this.project.select();

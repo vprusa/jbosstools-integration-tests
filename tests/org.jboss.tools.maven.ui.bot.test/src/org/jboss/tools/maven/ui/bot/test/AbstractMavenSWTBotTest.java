@@ -41,7 +41,7 @@ import org.eclipse.reddeer.eclipse.m2e.core.ui.wizard.MavenProjectWizardArtifact
 import org.eclipse.reddeer.eclipse.m2e.core.ui.wizard.MavenProjectWizardPage;
 import org.eclipse.reddeer.eclipse.ui.console.ConsoleView;
 import org.eclipse.reddeer.eclipse.ui.dialogs.PropertyDialog;
-import org.eclipse.reddeer.eclipse.ui.navigator.resources.ProjectExplorer;
+//import org.eclipse.reddeer.eclipse.ui.navigator.resources.PackageExplorerPart;
 import org.eclipse.reddeer.swt.api.StyledText;
 import org.eclipse.reddeer.swt.condition.ControlIsEnabled;
 import org.eclipse.reddeer.swt.condition.ShellIsAvailable;
@@ -88,7 +88,7 @@ public abstract class AbstractMavenSWTBotTest{
 	@AfterClass
 	public static void cleanUp(){
 		EditorHandler.getInstance().closeAll(false);
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		pe.open();
 		for(Project p: pe.getProjects()){
 			try{
@@ -187,7 +187,7 @@ public abstract class AbstractMavenSWTBotTest{
 	
 	public static void deleteProjects(boolean fromSystem){
 		EditorHandler.getInstance().closeAll(false);
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		pe.open();
 		for(Project p: pe.getProjects()){
 			try{
@@ -308,7 +308,7 @@ public abstract class AbstractMavenSWTBotTest{
 	}
 	
 	public Editor openPom(String project){
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		pe.open();
 		pe.getProject(project).getProjectItem("pom.xml").open();
 		Editor e = new DefaultEditor(project+"/pom.xml");
@@ -329,7 +329,7 @@ public abstract class AbstractMavenSWTBotTest{
 	}
 	
 	public PropertyDialog openPropertiesProject(String project){
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		pe.open();
 		pe.selectProjects(project);
 		PropertyDialog pd = new PropertyDialog(project);

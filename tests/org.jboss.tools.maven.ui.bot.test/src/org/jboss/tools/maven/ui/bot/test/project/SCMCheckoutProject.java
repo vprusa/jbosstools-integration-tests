@@ -8,8 +8,9 @@ import org.eclipse.reddeer.common.wait.TimePeriod;
 import org.eclipse.reddeer.common.wait.WaitWhile;
 import org.eclipse.reddeer.core.exception.CoreLayerException;
 import org.eclipse.reddeer.eclipse.m2e.scm.wizards.MavenCheckoutWizard;
+import org.eclipse.reddeer.eclipse.jdt.ui.packageview.PackageExplorerPart;
 import org.eclipse.reddeer.eclipse.m2e.scm.wizards.MavenCheckoutLocationPage;
-import org.eclipse.reddeer.eclipse.ui.navigator.resources.ProjectExplorer;
+//import org.eclipse.reddeer.eclipse.ui.navigator.resources.PackageExplorerPart;
 import org.eclipse.reddeer.eclipse.ui.perspectives.JavaEEPerspective;
 import org.eclipse.reddeer.requirements.openperspective.OpenPerspectiveRequirement.OpenPerspective;
 import org.eclipse.reddeer.swt.api.Tree;
@@ -42,7 +43,7 @@ public class SCMCheckoutProject extends AbstractMavenSWTBotTest {
 		assertTrue(ml.isCheckoutHeadRevision());
 		mc.finish(TimePeriod.getCustom(TimePeriod.LONG.getSeconds() * 2));
 		ignoreM2eConnectors();
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		pe.open();
 		assertTrue(pe.containsProject("eclipsetutorial"));
 		assertTrue(pe.containsProject("eclipsetutorial.core"));
@@ -78,7 +79,7 @@ public class SCMCheckoutProject extends AbstractMavenSWTBotTest {
 		new WaitWhile(new ShellIsAvailable("Import Maven Projects"),TimePeriod.LONG);
 		new WaitWhile(new JobIsRunning(),TimePeriod.VERY_LONG);
 		ignoreM2eConnectors();
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		pe.open();
 		assertTrue(pe.containsProject("eclipsetutorial.core"));
 		assertEquals(1,pe.getProjects().size());

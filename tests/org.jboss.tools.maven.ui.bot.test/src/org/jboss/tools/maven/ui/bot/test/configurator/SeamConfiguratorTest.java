@@ -13,7 +13,8 @@ package org.jboss.tools.maven.ui.bot.test.configurator;
 import static org.junit.Assert.assertEquals;
 
 import org.eclipse.reddeer.common.wait.WaitUntil;
-import org.eclipse.reddeer.eclipse.ui.navigator.resources.ProjectExplorer;
+import org.eclipse.reddeer.eclipse.jdt.ui.packageview.PackageExplorerPart;
+//import org.eclipse.reddeer.eclipse.ui.navigator.resources.PackageExplorerPart;
 import org.eclipse.reddeer.eclipse.ui.perspectives.JavaEEPerspective;
 import org.eclipse.reddeer.requirements.openperspective.OpenPerspectiveRequirement.OpenPerspective;
 import org.eclipse.reddeer.requirements.server.ServerRequirementState;
@@ -177,7 +178,7 @@ public class SeamConfiguratorTest extends AbstractConfiguratorsTest{
 	}
 	
 	private String getSeamRuntime(String project){
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		pe.open();
 		pe.getProject(project).select();
 		new ContextMenuItem("Properties").select();

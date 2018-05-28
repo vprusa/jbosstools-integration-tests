@@ -14,7 +14,7 @@ import org.jboss.ide.eclipse.as.reddeer.server.requirement.ServerRequirement.JBo
 import org.eclipse.reddeer.common.wait.AbstractWait;
 import org.eclipse.reddeer.common.wait.TimePeriod;
 import org.eclipse.reddeer.eclipse.jdt.ui.packageview.PackageExplorerPart;
-import org.eclipse.reddeer.eclipse.ui.navigator.resources.ProjectExplorer;
+//import org.eclipse.reddeer.eclipse.ui.navigator.resources.PackageExplorerPart;
 import org.eclipse.reddeer.eclipse.ui.wizards.datatransfer.ExternalProjectImportWizardDialog;
 import org.eclipse.reddeer.eclipse.ui.wizards.datatransfer.WizardProjectsImportPage;
 import org.eclipse.reddeer.requirements.server.ServerRequirementState;
@@ -42,7 +42,7 @@ public class SourceLookupTest extends AbstractMavenSWTBotTest{
 	@After
 	public void delete(){
 		EditorHandler.getInstance().closeAll(false);
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		pe.open();
 		org.eclipse.reddeer.direct.project.Project.delete("test13848", true, true);
 	}

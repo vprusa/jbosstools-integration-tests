@@ -19,9 +19,10 @@ import java.io.FileNotFoundException;
 import org.eclipse.reddeer.common.wait.TimePeriod;
 import org.eclipse.reddeer.common.wait.WaitUntil;
 import org.eclipse.reddeer.common.wait.WaitWhile;
+import org.eclipse.reddeer.eclipse.jdt.ui.packageview.PackageExplorerPart;
 import org.eclipse.reddeer.eclipse.jst.ejb.ui.project.facet.EjbProjectFirstPage;
 import org.eclipse.reddeer.eclipse.jst.ejb.ui.project.facet.EjbProjectWizard;
-import org.eclipse.reddeer.eclipse.ui.navigator.resources.ProjectExplorer;
+//import org.eclipse.reddeer.eclipse.ui.navigator.resources.PackageExplorerPart;
 import org.eclipse.reddeer.swt.condition.ShellIsAvailable;
 import org.eclipse.reddeer.swt.impl.button.PushButton;
 import org.eclipse.reddeer.swt.impl.ctab.DefaultCTabItem;
@@ -65,7 +66,7 @@ public abstract class AbstractConfiguratorsTest extends AbstractMavenSWTBotTest{
 	}
 	
 	public void addPersistence(String projectName) throws FileNotFoundException{
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		pe.open();
 		pe.getProject(projectName).select();
 		new ContextMenuItem("New","Other...").select();
@@ -110,7 +111,7 @@ public abstract class AbstractConfiguratorsTest extends AbstractMavenSWTBotTest{
 	}
 	
 	public void addFacesConf(String projectName){
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		pe.open();
 		pe.getProject(projectName).select();
 		new ContextMenuItem("New","Other...").select();
@@ -125,7 +126,7 @@ public abstract class AbstractConfiguratorsTest extends AbstractMavenSWTBotTest{
 	
 	
 	public void addServlet(String projectName, String servletName, String servletClass, String load){
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		pe.open();
 		pe.getProject(projectName).getProjectItem("WebContent","WEB-INF","web.xml").open();
 		DefaultEditor de = new DefaultEditor("web.xml");

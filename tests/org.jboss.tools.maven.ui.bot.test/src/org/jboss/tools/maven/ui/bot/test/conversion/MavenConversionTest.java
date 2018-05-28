@@ -14,8 +14,9 @@ import org.eclipse.reddeer.common.wait.TimePeriod;
 import org.eclipse.reddeer.common.wait.WaitUntil;
 import org.eclipse.reddeer.common.wait.WaitWhile;
 import org.eclipse.reddeer.eclipse.condition.ProblemExists;
+import org.eclipse.reddeer.eclipse.jdt.ui.packageview.PackageExplorerPart;
 import org.eclipse.reddeer.eclipse.ui.dialogs.PropertyDialog;
-import org.eclipse.reddeer.eclipse.ui.navigator.resources.ProjectExplorer;
+//import org.eclipse.reddeer.eclipse.ui.navigator.resources.PackageExplorerPart;
 import org.eclipse.reddeer.eclipse.ui.perspectives.JavaEEPerspective;
 import org.eclipse.reddeer.eclipse.ui.views.markers.ProblemsView;
 import org.eclipse.reddeer.eclipse.ui.views.markers.ProblemsView.ProblemType;
@@ -214,7 +215,7 @@ public class MavenConversionTest extends AbstractMavenSWTBotTest{
 	}
 	
 	private void createWithRuntime(){
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		pe.open();
 		createWebProject(WEB_PROJECT_NAME, sr.getRuntimeName(), false);
 		pe.open();
@@ -228,7 +229,7 @@ public class MavenConversionTest extends AbstractMavenSWTBotTest{
 		
 	
 	private void checkDependency(String projectName, List<String> valuesToCheck){
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 	    pe.open();
 	    pe.getProject(projectName).getProjectItem("pom.xml").open();
 	    new DefaultEditor("pom.xml");

@@ -45,10 +45,12 @@ import org.eclipse.reddeer.eclipse.condition.ConsoleHasNoChange;
 import org.eclipse.reddeer.eclipse.core.resources.DefaultProject;
 import org.eclipse.reddeer.eclipse.core.resources.MavenProject;
 import org.eclipse.reddeer.eclipse.core.resources.Project;
+import org.eclipse.reddeer.eclipse.jdt.ui.packageview.PackageExplorerPart;
 import org.eclipse.reddeer.eclipse.m2e.core.ui.preferences.MavenSettingsPreferencePage;
 import org.eclipse.reddeer.eclipse.ui.browser.BrowserEditor;
 import org.eclipse.reddeer.eclipse.ui.console.ConsoleView;
-import org.eclipse.reddeer.eclipse.ui.navigator.resources.ProjectExplorer;
+//import org.eclipse.reddeer.eclipse.ui.navigator.resources.PackageExplorerPart;
+
 import org.eclipse.reddeer.eclipse.ui.views.log.LogMessage;
 import org.eclipse.reddeer.eclipse.ui.views.log.LogView;
 import org.eclipse.reddeer.eclipse.utils.DeleteUtils;
@@ -130,7 +132,7 @@ public abstract class AbstractImportQuickstartsTest {
 	 */
 	protected void deployUndeployQuickstart(Quickstart qstart, String serverName) {
 		new ConsoleView().clearConsole();
-		ProjectExplorer explorer = new ProjectExplorer();
+		PackageExplorerPart explorer = new PackageExplorerPart();
 
 		findDeployableProjects(qstart, explorer);
 
@@ -161,7 +163,7 @@ public abstract class AbstractImportQuickstartsTest {
 		new WaitWhile(new JobIsRunning(), TimePeriod.VERY_LONG);
 	}
 
-	private void findDeployableProjects(Quickstart qstart, ProjectExplorer explorer) {
+	private void findDeployableProjects(Quickstart qstart, PackageExplorerPart explorer) {
 		explorer.activate();
 		for (Project project : explorer.getProjects()) {
 			explorer.getProject(project.getName()).select();
@@ -178,7 +180,7 @@ public abstract class AbstractImportQuickstartsTest {
 
 	}
 
-	private void deployProject(String deployableProject, ProjectExplorer explorer) {
+	private void deployProject(String deployableProject, PackageExplorerPart explorer) {
 		log.info("DEPLOYING " + deployableProject);
 		explorer.activate();
 		Project project = explorer.getProject(deployableProject);
@@ -419,7 +421,7 @@ public abstract class AbstractImportQuickstartsTest {
 	}
 
 	private void runUpdate() {
-		new ProjectExplorer().getProjects().get(0).select();
+		new PackageExplorerPart().getProjects().get(0).select();
 		new ContextMenuItem("Maven", "Update Project...").select();
 		new DefaultShell("Update Maven Project");
 		new PushButton("Select All").click();
@@ -429,7 +431,7 @@ public abstract class AbstractImportQuickstartsTest {
 	}
 
 	protected static void deleteAllProjects() {
-		ProjectExplorer projectExplorer = new ProjectExplorer();
+		PackageExplorerPart projectExplorer = new PackageExplorerPart();
 		projectExplorer.open();
 		List<DefaultProject> projects = projectExplorer.getProjects();
 		for (DefaultProject p : projects) {
@@ -442,7 +444,7 @@ public abstract class AbstractImportQuickstartsTest {
 	}
 	
 	protected void mavenUpdate(Quickstart quickstart) {
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		TreeItem projectItem = pe.getProject(quickstart.getName()).getTreeItem();
 		MavenProject project = new MavenProject(projectItem);
 		project.updateMavenProject();
@@ -471,7 +473,7 @@ public abstract class AbstractImportQuickstartsTest {
 	}
 
 	private boolean quickstartImported(Quickstart qstart) {
-		ProjectExplorer projectExplorer = new ProjectExplorer();
+		PackageExplorerPart projectExplorer = new PackageExplorerPart();
 		projectExplorer.open();
 		List<DefaultProject> projects = projectExplorer.getProjects();
 		for (DefaultProject p : projects) {

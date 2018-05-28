@@ -12,12 +12,14 @@ package org.jboss.tools.maven.ui.bot.test.project;
 
 import static org.junit.Assert.assertTrue;
 
+//import org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart;
 import org.eclipse.reddeer.eclipse.core.resources.ProjectItem;
+import org.eclipse.reddeer.eclipse.jdt.ui.packageview.PackageExplorerPart;
 import org.eclipse.reddeer.eclipse.jst.j2ee.ui.project.facet.EarProjectFirstPage;
 import org.eclipse.reddeer.eclipse.jst.j2ee.ui.project.facet.EarProjectInstallPage;
 import org.eclipse.reddeer.eclipse.jst.j2ee.ui.project.facet.EarProjectWizard;
 import org.eclipse.reddeer.eclipse.jst.j2ee.wizard.DefaultJ2EEComponentCreationWizard;
-import org.eclipse.reddeer.eclipse.ui.navigator.resources.ProjectExplorer;
+//import org.eclipse.reddeer.eclipse.ui.navigator.resources.PackageExplorerPart;
 import org.eclipse.reddeer.eclipse.ui.perspectives.JavaEEPerspective;
 import org.eclipse.reddeer.requirements.openperspective.OpenPerspectiveRequirement.OpenPerspective;
 import org.eclipse.reddeer.requirements.server.ServerRequirementState;
@@ -52,12 +54,12 @@ public class EARProjectTest extends AbstractMavenSWTBotTest{
 		assertTrue(targetFiles.getResource(EAR_PROJECT_NAME+"Client-0.0.1-SNAPSHOT.jar") != null);
 		assertTrue(targetFiles.getResource(EAR_PROJECT_NAME+"Connector-0.0.1-SNAPSHOT.rar") != null);
 		assertTrue(targetFiles.getResource(EAR_PROJECT_NAME+"Web-0.0.1-SNAPSHOT.war") != null);
-		
 	}
 	
 	public ProjectItem getTargetFiles(String projectName){
-		ProjectExplorer pe = new ProjectExplorer();
+		PackageExplorerPart pe = new PackageExplorerPart();
 		pe.open();
+		//pe.openInActivePerspective();
 		pe.getProject(projectName).select();
 		new ContextMenuItem("Refresh").select();
 		return pe.getProject(projectName).getProjectItem("target",projectName+"-0.0.1-SNAPSHOT");
