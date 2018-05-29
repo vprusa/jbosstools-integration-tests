@@ -152,7 +152,8 @@ public class MavenProfilesTest extends AbstractMavenSWTBotTest {
         new PushButton("Close").click();
         try{
             new DefaultShell("Save Changes");
-            new PushButton("No").click();
+           // new PushButton("No").click();
+            new PushButton(new RegexMatcher("(No|Do&n't Save|Do.*n.*t Save)")).click();
         } catch(SWTLayerException ex){
             ex.printStackTrace();
         } finally {
@@ -189,7 +190,7 @@ public class MavenProfilesTest extends AbstractMavenSWTBotTest {
         new PushButton("Close").click();
         try{
             new DefaultShell("Save Changes");
-            new PushButton("No").click();
+            new PushButton(new RegexMatcher("(No|Do&n't Save|Do.*n.*t Save)")).click();
         } catch(SWTLayerException ex){
             ex.printStackTrace();
         } finally {
