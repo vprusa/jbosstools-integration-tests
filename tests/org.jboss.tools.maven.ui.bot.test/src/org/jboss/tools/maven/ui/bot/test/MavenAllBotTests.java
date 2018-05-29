@@ -39,7 +39,7 @@ import org.junit.runners.Suite;
  */
 @RunWith(RedDeerSuite.class)
 @Suite.SuiteClasses({
-   /* 
+   
 	ArchetypesTest.class,
 	
 	PerspectiveTest.class,
@@ -73,8 +73,8 @@ import org.junit.runners.Suite;
 	APTPropertiesPageTest.class,
 	
 	SCMCheckoutProject.class
-	*/
-	MavenProfilesTest.class
+	
+	//MavenProfilesTest.class
 
 })
 public class MavenAllBotTests {
