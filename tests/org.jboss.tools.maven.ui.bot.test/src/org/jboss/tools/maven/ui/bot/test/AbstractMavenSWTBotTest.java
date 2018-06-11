@@ -179,7 +179,8 @@ public abstract class AbstractMavenSWTBotTest{
 		ProjectIsBuilt pb = new ProjectIsBuilt();
 		new WaitUntil(pb,TimePeriod.VERY_LONG);
 		if(shouldBuild){
-			assertTrue(pb.isBuildSuccesfull());
+			assertTrue("Build should be succesfull but is not.. \n" + pb.description(),pb.isBuildSuccesfull());
+			
 		}else {
 			assertFalse(pb.isBuildSuccesfull());
 		}
