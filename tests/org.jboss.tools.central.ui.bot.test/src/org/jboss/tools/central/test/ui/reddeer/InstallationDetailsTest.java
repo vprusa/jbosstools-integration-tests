@@ -51,9 +51,10 @@ import org.junit.Test;
 public class InstallationDetailsTest {
 
 	private static String HELP_BUTTON = "Help";
-	private static String ABOUT_MENU_BUTTON = "About Red Hat Developer Studio";
-	private static String MODAL_DIALOG_ABOUT_DEVSTUDIO_INSTALLATION_DETAILS_BUTTON = "Installation Details";
-	private static String MODAL_DIALOG_ABOUT_DEVSTUDIO_INSTALLATION_DETAILS_TITLE = "Red Hat Developer Studio Installation Details";
+
+	private static String ABOUT_MENU_BUTTON = ".*About Red Hat.*Developer Studio.*";
+	private static String MODAL_DIALOG_ABOUT_DEVSTUDIO_INSTALLATION_DETAILS_BUTTON = ".*Installation Details.*";
+	private static String MODAL_DIALOG_ABOUT_DEVSTUDIO_INSTALLATION_DETAILS_TITLE = ".*Red Hat.*Developer Studio Installation Details.*";
 	private static String MODAL_DIALOG_CONFIG_MENU_BUTTON = "Configuration";
 
 	private Logger log = new Logger(this.getClass());
@@ -151,9 +152,9 @@ public class InstallationDetailsTest {
 				}
 			});
 		} else {
-			new ShellMenuItem(HELP_BUTTON, ABOUT_MENU_BUTTON).select();
+			new ShellMenuItem(new RegexMatcher(HELP_BUTTON), new RegexMatcher(ABOUT_MENU_BUTTON)).select();
 		}
-		about = new DefaultShell(ABOUT_MENU_BUTTON);
+		about = new DefaultShell(new RegexMatcher(ABOUT_MENU_BUTTON));
 
 		// get styled text from help
 		DefaultStyledText dt = new DefaultStyledText();
@@ -168,9 +169,9 @@ public class InstallationDetailsTest {
 
 		assertFalse("The JBossTools version value is empty!", jbossToolsVersion.isEmpty());
 
-		new PushButton(MODAL_DIALOG_ABOUT_DEVSTUDIO_INSTALLATION_DETAILS_BUTTON).click();
+		new PushButton(new RegexMatcher(MODAL_DIALOG_ABOUT_DEVSTUDIO_INSTALLATION_DETAILS_BUTTON)).click();
 		// validate that shell opened
-		installationDetails = new DefaultShell(MODAL_DIALOG_ABOUT_DEVSTUDIO_INSTALLATION_DETAILS_TITLE);
+		installationDetails = new DefaultShell(new RegexMatcher(MODAL_DIALOG_ABOUT_DEVSTUDIO_INSTALLATION_DETAILS_TITLE));
 
 		TabFolder tabFolder = new DefaultTabItem(MODAL_DIALOG_CONFIG_MENU_BUTTON).getTabFolder();
 
