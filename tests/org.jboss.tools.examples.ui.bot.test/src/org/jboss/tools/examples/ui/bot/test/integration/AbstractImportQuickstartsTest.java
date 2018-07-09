@@ -45,6 +45,7 @@ import org.eclipse.reddeer.eclipse.condition.ConsoleHasNoChange;
 import org.eclipse.reddeer.eclipse.core.resources.DefaultProject;
 import org.eclipse.reddeer.eclipse.core.resources.MavenProject;
 import org.eclipse.reddeer.eclipse.core.resources.Project;
+import org.eclipse.reddeer.eclipse.exception.EclipseLayerException;
 import org.eclipse.reddeer.eclipse.m2e.core.ui.preferences.MavenSettingsPreferencePage;
 import org.eclipse.reddeer.eclipse.ui.browser.BrowserEditor;
 import org.eclipse.reddeer.eclipse.ui.console.ConsoleView;
@@ -443,7 +444,19 @@ public abstract class AbstractImportQuickstartsTest {
 	
 	protected void mavenUpdate(Quickstart quickstart) {
 		ProjectExplorer pe = new ProjectExplorer();
-		TreeItem projectItem = pe.getProject(quickstart.getName()).getTreeItem();
+		TreeItem projectItem;
+		String quickstartBaseName = quickstart.getName();
+		try {
+			projectItem = pe.getProject(quickstartBaseName).getTreeItem();
+		}catch(EclipseLayerException e) {
+			quickstart.setName("wildfly-" + quickstartBaseName);
+			try {
+				projectItem = pe.getProject(quickstart.getName()).getTreeItem();
+			}catch(EclipseLayerException ee) {
+				quickstart.setName("jboss-" + quickstartBaseName);
+				projectItem = pe.getProject(quickstart.getName()).getTreeItem();
+			}
+		}
 		MavenProject project = new MavenProject(projectItem);
 		project.updateMavenProject();
 	}
