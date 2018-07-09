@@ -28,6 +28,7 @@ import org.eclipse.reddeer.common.platform.RunningPlatform;
 import org.eclipse.reddeer.common.util.Display;
 import org.eclipse.reddeer.common.wait.TimePeriod;
 import org.eclipse.reddeer.common.wait.WaitWhile;
+import org.eclipse.reddeer.core.matcher.WithTextMatcher;
 import org.eclipse.reddeer.swt.api.TabFolder;
 import org.eclipse.reddeer.swt.api.TabItem;
 import org.eclipse.reddeer.swt.impl.button.PushButton;
@@ -152,7 +153,7 @@ public class InstallationDetailsTest {
 				}
 			});
 		} else {
-			new ShellMenuItem(new RegexMatcher(HELP_BUTTON), new RegexMatcher(ABOUT_MENU_BUTTON)).select();
+			new ShellMenuItem(new WithTextMatcher(new RegexMatcher(HELP_BUTTON)), new WithTextMatcher(new RegexMatcher(ABOUT_MENU_BUTTON))).select();
 		}
 		about = new DefaultShell(new RegexMatcher(ABOUT_MENU_BUTTON));
 
@@ -169,9 +170,9 @@ public class InstallationDetailsTest {
 
 		assertFalse("The JBossTools version value is empty!", jbossToolsVersion.isEmpty());
 
-		new PushButton(new RegexMatcher(MODAL_DIALOG_ABOUT_DEVSTUDIO_INSTALLATION_DETAILS_BUTTON)).click();
+		new PushButton(new WithTextMatcher(new RegexMatcher(MODAL_DIALOG_ABOUT_DEVSTUDIO_INSTALLATION_DETAILS_BUTTON))).click();
 		// validate that shell opened
-		installationDetails = new DefaultShell(new RegexMatcher(MODAL_DIALOG_ABOUT_DEVSTUDIO_INSTALLATION_DETAILS_TITLE));
+		installationDetails = new DefaultShell(new WithTextMatcher(new RegexMatcher(MODAL_DIALOG_ABOUT_DEVSTUDIO_INSTALLATION_DETAILS_TITLE)));
 
 		TabFolder tabFolder = new DefaultTabItem(MODAL_DIALOG_CONFIG_MENU_BUTTON).getTabFolder();
 
