@@ -155,7 +155,7 @@ public class InstallationDetailsTest {
 		} else {
 			new ShellMenuItem(new WithTextMatcher(new RegexMatcher(HELP_BUTTON)), new WithTextMatcher(new RegexMatcher(ABOUT_MENU_BUTTON))).select();
 		}
-		about = new DefaultShell(new RegexMatcher(ABOUT_MENU_BUTTON));
+		about = new DefaultShell(new WithTextMatcher(new RegexMatcher(ABOUT_MENU_BUTTON)));
 
 		// get styled text from help
 		DefaultStyledText dt = new DefaultStyledText();

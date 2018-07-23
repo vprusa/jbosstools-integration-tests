@@ -70,7 +70,7 @@ import org.junit.BeforeClass;
 
 public abstract class AbstractMavenSWTBotTest{
 	
-	private static final Logger log = Logger.getLogger(AbstractMavenSWTBotTest.class);
+	protected static final Logger log = Logger.getLogger(AbstractMavenSWTBotTest.class);
 	
 	@BeforeClass 
 	public static void beforeClass(){
