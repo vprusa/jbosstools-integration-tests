@@ -52,11 +52,10 @@ public class EARProjectTest extends AbstractMavenSWTBotTest{
 		convertToMavenProject(EAR_PROJECT_NAME, "ear",true);
 		buildProject(EAR_PROJECT_NAME, "..Maven build...", "clean package",true);
 		ProjectItem targetFiles = getTargetFiles(EAR_PROJECT_NAME);
-		assertTrue(targetFiles.getResource(EAR_PROJECT_NAME+"EJB-0.0.1-SNAPSHOT.jar") != null);
-		assertTrue(targetFiles.getResource(EAR_PROJECT_NAME+"Client-0.0.1-SNAPSHOT.jar") != null);
-		assertTrue(targetFiles.getResource(EAR_PROJECT_NAME+"Connector-0.0.1-SNAPSHOT.rar") != null);
-		assertTrue(targetFiles.getResource(EAR_PROJECT_NAME+"Web-0.0.1-SNAPSHOT.war") != null);
-		
+		assertTrue(targetFiles.getResource(EAR_PROJECT_NAME+"EJB-"+EAR_PROJECT_NAME+"EJB-0.0.1-SNAPSHOT.jar") != null);
+		assertTrue(targetFiles.getResource(EAR_PROJECT_NAME+"Client-"+EAR_PROJECT_NAME+"Client-0.0.1-SNAPSHOT.jar") != null);
+		assertTrue(targetFiles.getResource(EAR_PROJECT_NAME+"Connector-"+EAR_PROJECT_NAME+"Connector-0.0.1-SNAPSHOT.rar") != null);
+		assertTrue(targetFiles.getResource(EAR_PROJECT_NAME+"Web-"+EAR_PROJECT_NAME+"Web-0.0.1-SNAPSHOT.war") != null);
 	}
 	
 	public ProjectItem getTargetFiles(String projectName){
