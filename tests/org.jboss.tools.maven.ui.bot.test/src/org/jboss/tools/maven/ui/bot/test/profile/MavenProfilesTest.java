@@ -22,6 +22,7 @@ import java.util.List;
 
 import org.eclipse.reddeer.common.matcher.RegexMatcher;
 import org.eclipse.reddeer.common.wait.WaitWhile;
+import org.eclipse.reddeer.core.matcher.WithTextMatcher;
 import org.eclipse.reddeer.core.matcher.WithTextMatchers;
 import org.eclipse.reddeer.eclipse.core.resources.Project;
 //import org.eclipse.reddeer.eclipse.jdt.ui.packageview.PackageExplorerPart;
@@ -153,7 +154,7 @@ public class MavenProfilesTest extends AbstractMavenSWTBotTest {
         try{
             new DefaultShell("Save Changes");
            // new PushButton("No").click();
-            new PushButton(new RegexMatcher("(No|Do&n't Save|Do.*n.*t Save)")).click();
+            new PushButton(new WithTextMatcher(new RegexMatcher("(No|.*Do.*n.*t Save.*)"))).click();
         } catch(SWTLayerException ex){
             ex.printStackTrace();
         } finally {
@@ -190,7 +191,7 @@ public class MavenProfilesTest extends AbstractMavenSWTBotTest {
         new PushButton("Close").click();
         try{
             new DefaultShell("Save Changes");
-            new PushButton(new RegexMatcher("(No|Do&n't Save|Do.*n.*t Save)")).click();
+            new PushButton(new WithTextMatcher(new RegexMatcher("(No|.*Do.*n.*t Save.*)"))).click();
         } catch(SWTLayerException ex){
             ex.printStackTrace();
         } finally {
